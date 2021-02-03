@@ -458,7 +458,7 @@ describe('Persistency', () => {
     sut.saveOrder();
     expect(consoleSpy).toHaveBeenCalledWith('Pedido salvo com sucesso...');
     /*
-      espero que o metodo jest.spyOn(console, 'log') seja chamado com o valor
+      espero que o metodo jest.spyOn(console, 'log') seja chamado e com o valor
       "Pedido salvo com sucesso..." como paramentro.
     */
   });
