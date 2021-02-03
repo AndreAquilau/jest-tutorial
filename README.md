@@ -259,15 +259,162 @@ Pattern:  - 0 matches
 ```
 ##### Como criar um arquivo de teste
 > index.test.ts or index.spec.ts não a diferença entre os dois ambos são testes.
+##### Criando teste com test and it
+>persistency.spec.ts
+```ts
+it('describe for test (IT)', () => {
+  const number = 1;
+
+  expect(number).toBe(1);
+});
+
+test('describe for test (TEST)', () => {
+  const nome = 'Andre';
+  expect(nome).toBe('Andre');
+});
+```
+```bash
+npx jest
+
+ PASS  src/services/persistency.spec.ts
+  ✓ describe for test (IT) (2 ms)
+  ✓ describe for test (TEST)
+
+Test Suites: 1 passed, 1 total
+Tests:       2 passed, 2 total
+Snapshots:   0 total
+Time:        1.431 s
+Ran all test suites.
+```
+
+#### toBe and not.toBe
+> expect(value).toBe(valor esperado)
+Quando usamos toBe quer dizer que esperamos aquele valor.
+> expect(value).not.toBe(valor nao esperado).
+Quando usamos o not estamos negando o valor a ver recebido.
+
+#### Describe group test
+Usamos um describe quando queremos agrupar um grupo de teste.
+```ts
+describe('Testando alguma coisa', () => {
+  it('describe for test (IT)', () => {
+    const number = 1;
+
+    expect(number).toBe(1);
+  });
+
+  test('describe for test (TEST)', () => {
+    const nome = 'Andre';
+    expect(nome).toBe('Andre');
+  });
+});
+
+describe('Teste 1', () => {
+  it('describe for test (IT)', () => {
+    const number = 1;
+
+    expect(number).toBe(1);
+  });
+
+});
+
+
+describe('Teste 2', () => {
+  test('describe for test (TEST)', () => {
+    const nome = 'Andre';
+    expect(nome).toBe('Andre');
+  });
+});
+```
+
+#### Teste em valores primitivos
+```ts
+describe('Primite values', () => {
+  test('should test jest assertions', () => {
+    const number = 10;
+
+    // Teste em dados Primitivos
+
+    expect(number).toBe(number);
+    // espero ser
+
+    expect(number).toEqual(number);
+    // espero igualar
+
+    expect(number).not.toBeNull();
+    // espero nao ser nulo
+
+    expect(number).not.toBeFalsy();
+    // espero nao ser falso
+
+    expect(number).toBeGreaterThan(9);
+    // espero ser maior que 9
+
+    expect(number).toBeGreaterThanOrEqual(10);
+    // espero ser maior que 10 ou igual
+
+    expect(number).toBeLessThan(11);
+    // espero ser menor que 11
+
+    expect(number).toBeLessThanOrEqual(10);
+    // espero ser menor que 10 ou igual
+
+    expect(number).toBeCloseTo(10);
+    // recebe dois paramentros primerio value, segundo casas decimal default 2
+    // espero esta perto de 10
+
+    expect(number).toHaveProperty('toString');
+    // espero ter propriedade number.toString
+  });
+});
+```
+#### Teste em Objetos
+```ts
+
+describe('Objects', () => {
+  test('should test jest assertions', () => {
+    const person = {
+      name: 'Andre',
+      age: 20,
+    };
+
+    const anotherPerson = {
+      name: 'Andre',
+      age: 20,
+    };
+
+    /*
+
+    expect(person).toBe(anotherPerson);
+
+    toBe -> so funciona em valores primitivos.
+    */
+
+    expect(person).toEqual(anotherPerson);
+    // expero igualar
+
+    expect(person).toHaveProperty('name');
+    // espero ter propriedade name
+
+    expect(anotherPerson).toHaveProperty('age');
+    // espero ter propriedade age
+
+    expect(person.name).toBe('Andre');
+    // espero na propriedade name Andre
+    // Check Value Property
+  });
+});
+
+```
 
 #### Scripts dev, start and build
 ```json
-{
-  "scripts":{
+  "scripts": {
     "start": "node ./dist/services/server.js",
     "dev": "ts-node-dev --require tsconfig-paths/register --respawn --transpile-only  --ignore-watch node_modules --no-notify ./src/services/server.ts",
     "build": "babel src --extensions \".js,.ts\" --out-dir dist  --copy-files --no-copy-ignore",
-    "test": "jest"
+    "test": "jest",
+    "test:silent": "npx jest --watchAll --noStackTrace",
+    "lint": "eslint ./src/**/* --ext .ts,.tsx,.js,.jsx --fix"
   }
-}
 ```

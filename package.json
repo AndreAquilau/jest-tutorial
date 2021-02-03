@@ -3,7 +3,9 @@
     "start": "node ./dist/services/server.js",
     "dev": "ts-node-dev --require tsconfig-paths/register --respawn --transpile-only  --ignore-watch node_modules --no-notify ./src/services/server.ts",
     "build": "babel src --extensions \".js,.ts\" --out-dir dist  --copy-files --no-copy-ignore",
-    "test": "jest"
+    "test": "jest",
+    "test:silent": "npx jest --watchAll --noStackTrace",
+    "lint": "eslint ./src/**/* --ext .ts,.tsx,.js,.jsx --fix"
   },
   "devDependencies": {
     "@types/jest": "^26.0.20",

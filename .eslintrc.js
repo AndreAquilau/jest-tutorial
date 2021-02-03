@@ -30,5 +30,7 @@ module.exports = {
     'no-useless-constructor': 'off',
     'class-methods-use-this': 'off',
     'max-classes-per-file': 'off',
+    '@typescript-eslint/no-unused-vars': 'off',
+    'import/prefer-default-export': 'off'
   },
 };
