@@ -210,17 +210,17 @@ module.exports = {
 ```bash
 yarn add -D jest ts-jest
 ```
-##### Conferir se existe algum bug fixo nos pacotes.
+#### Conferir se existe algum bug fixo nos pacotes.
 ```bash
 yarn audit fix
 
 0 vulnerabilities found - Packages audited: 840
 ```
-##### Check se a alguma atualização nos nossos packotes.
+#### Check se a alguma atualização nos nossos packotes.
 ```bash
 yarn check -u
 ```
-##### Iniciando arquivo de configuração do jest
+#### Iniciando arquivo de configuração do jest
 ```bash
 yarn jest --init
 
@@ -233,7 +233,7 @@ yarn jest --init
 
 ✏️  Modified C:\Users\Luan\Desktop\S.O.L.I.D\Typescript-TDD-Jest\package.json
 ```
-##### Iniciando arquivo de configuração do jest com Ts-Jest Config:Init (Typescript).
+#### Iniciando arquivo de configuração do jest com Ts-Jest Config:Init (Typescript).
 ```bash
 npx ts-jest config:init
 ```
@@ -244,7 +244,7 @@ module.exports = {
   testEnvironment: 'node',
 };
 ```
-##### Executando teste
+#### Executando teste
 ```bash
 npx jest
 
@@ -257,9 +257,9 @@ In C:\Users\Luan\Desktop\S.O.L.I.D\Typescript-TDD-Jest
   testRegex:  - 0 matches
 Pattern:  - 0 matches
 ```
-##### Como criar um arquivo de teste
+#### Como criar um arquivo de teste
 > index.test.ts or index.spec.ts não a diferença entre os dois ambos são testes.
-##### Criando teste com test and it
+#### Criando teste com test and it
 >persistency.spec.ts
 ```ts
 it('describe for test (IT)', () => {
@@ -405,6 +405,63 @@ describe('Objects', () => {
   });
 });
 
+```
+
+#### Teste com SpyOn teste de comportamento
+```ts
+import { Persistency } from './persistency';
+
+describe('Persistency', () => {
+  afterEach(() => jest.clearAllMocks());
+  /*
+    afterEach(() => jest.clearAllMocks());
+    limpa o mocks a cada teste.
+
+    obs: quando um metodo e chamado em um teste isso e somado
+    como uma chamada se chamar de novo sera mais uma chamada
+    para resolver isso usamos o clearAllMocks
+  */
+
+  test('should return undefined', () => {
+    // System Under Test
+    const sut = new Persistency();
+
+    expect(sut.saveOrder()).toBeUndefined();
+    // espero ser undefined
+
+  });
+
+  test('should call console.log once', () => {
+    const sut = new Persistency();
+
+    const consoleSpy = jest.spyOn(console, 'log');
+    /*
+      jest.spyOn(objeto, 'metodo')
+      usado para manitorar se um metodo foi chamado
+    */
+    sut.saveOrder();
+    expect(consoleSpy).toHaveBeenCalledTimes(1);
+    /*
+     espero que o metodo jest.spyOn(console, 'log') seja chamado apenas uma vez.
+    */
+  });
+
+  test('should call console.log with "Pedido salvo com sucesso..."', () => {
+    const sut = new Persistency();
+
+    const consoleSpy = jest.spyOn(console, 'log');
+    /*
+      jest.spyOn(objeto, 'metodo')
+      usado para manitorar se um metodo foi chamado
+    */
+    sut.saveOrder();
+    expect(consoleSpy).toHaveBeenCalledWith('Pedido salvo com sucesso...');
+    /*
+      espero que o metodo jest.spyOn(console, 'log') seja chamado com o valor
+      "Pedido salvo com sucesso..." como paramentro.
+    */
+  });
+});
 ```
 
 #### Scripts dev, start and build
