@@ -419,7 +419,8 @@ describe('Persistency', () => {
 
     obs: quando um metodo e chamado em um teste isso e somado
     como uma chamada se chamar de novo sera mais uma chamada
-    para resolver isso usamos o clearAllMocks
+    para resolver isso usamos o clearAllMocks pois os jest por
+    default nao limpa os Mocks entre os teste.
   */
 
   test('should return undefined', () => {
