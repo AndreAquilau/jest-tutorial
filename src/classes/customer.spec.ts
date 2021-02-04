@@ -1,5 +1,5 @@
 import { IndividualCustomer } from './customer';
-
+// teste
 const createSut = (firstName: string, lastName: string, cpf: string) => {
   return new IndividualCustomer(firstName, lastName, cpf);
 };
