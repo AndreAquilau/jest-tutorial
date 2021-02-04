@@ -27,17 +27,9 @@ const persistency = new Persistency();
 //   'Miranda',
 //   '111.111.111-11',
 // );
-const enterpriseCustomer = new EnterpriseCustomer(
-  'Empresa Gigante',
-  '2222222222222222',
-);
+const enterpriseCustomer = new EnterpriseCustomer('Empresa Gigante', '2222222222222222');
 
-const order = new Order(
-  shoppingCart,
-  messaging,
-  persistency,
-  enterpriseCustomer,
-);
+const order = new Order(shoppingCart, messaging, persistency, enterpriseCustomer);
 
 shoppingCart.addItem(new Product('Camiseta', 49.91));
 shoppingCart.addItem(new Product('Caderno', 9.9123));
