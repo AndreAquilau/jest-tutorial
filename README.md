@@ -368,6 +368,29 @@ describe('Primite values', () => {
   });
 });
 ```
+#### Use toBeCloseTo(12.3) para valores com ponto flutuante.
+```ts
+import { Product } from './product';
+
+// system under test
+const createSut = (name: string, price: number) => {
+  return new Product(name, price);
+};
+
+describe('Product', () => {
+  afterEach(() => jest.clearAllMocks());
+
+  test('should return property name and price', () => {
+    const sut = createSut('coca-cola', 7.5);
+
+    expect(sut.name).toBe('coca-cola');
+
+    expect(sut.price).toBeCloseTo(7.5);
+    // Usado para testa valores com ponto flutuante.
+  });
+});
+```
+
 #### Teste em Objetos
 ```ts
 
