@@ -18,8 +18,8 @@ describe('TenPercentDiscount', () => {
 
     sut.calculate(value);
     expect(calculateSpy).not.toBeUndefined();
-    expect(calculateSpy).toBeCalledTimes(1);
-    expect(calculateSpy).toBeCalledWith(value);
-    expect(calculateSpy).toReturnWith(value - value * 0.1);
+    expect(calculateSpy).toHaveBeenCalledTimes(1);
+    expect(calculateSpy).toHaveBeenCalledWith(value);
+    expect(calculateSpy).toHaveReturnedWith(value - value * 0.1);
   });
 });
